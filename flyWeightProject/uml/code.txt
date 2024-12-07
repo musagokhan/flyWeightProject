@@ -1,0 +1,44 @@
+```
+@startuml
+
+title Flyweight Pattern UML Diagram
+
+package "mainWork" {
+    class Manager {
+        + main(String[] args) : void
+    }
+}
+
+package "special" {
+    class Tree {
+        - posX: int
+        - posY: int
+        - treeType: TreeType
+        + Tree(int x, int y, TreeType treeType)
+        + draw() : void
+    }
+
+    class TreeType {
+        - name: String
+        - age: int
+        - length: double
+        + TreeType(String name, int age, double length)
+        + draw(int posX, int posY) : void
+    }
+}
+
+package "factory" {
+    class TreeFactory {
+        - treeType: Map<String, TreeType>
+        + getTreeType(String name, int age, double length) : TreeType
+    }
+}
+
+Manager --> Tree : "uses"
+Manager --> TreeFactory : "uses"
+Tree --> TreeType : "composition"
+TreeFactory --> TreeType : "creates"
+
+@enduml
+```
+
